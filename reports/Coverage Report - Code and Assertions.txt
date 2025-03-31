@@ -55,17 +55,24 @@ Branch Coverage for instance /\tb_top#DUT
   File design/encoder_design/priority_enc.v
 ------------------------------------IF Branch------------------------------------
     11                                        98     Count coming in to IF
-    11              1                          2       if (rst) begin
-    15              1                         96       else begin
+    11              1                          2       if (rst) begin
+
+    15              1                         96       else begin
+
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
     16                                        96     Count coming in to CASE
-    17              1                          9           4'b0000: begin
-    21              1                         67           4'b1xxx: begin
-    25              1                          9           4'b01xx: begin
-    29              1                          8           4'b001x: begin
-    33              1                          3           4'b0001: begin
+    17              1                          9           4'b0000: begin
+
+    21              1                         67           4'b1xxx: begin
+
+    25              1                          9           4'b01xx: begin
+
+    29              1                          8           4'b001x: begin
+
+    33              1                          3           4'b0001: begin
+
 Branch totals: 5 hits of 5 branches = 100.00%
 
 
@@ -81,40 +88,74 @@ Statement Coverage for instance /\tb_top#DUT  --
     Line         Item                      Count     Source 
     ----         ----                      -----     ------ 
   File design/encoder_design/priority_enc.v
-    2                                                module priority_enc (
-    3                                                  input clk,                // the clock signal
-    4                                                  input rst,                // active high reset
-    5                                                  input [3:0] D,           // input data
-    6                                                  output reg [1:0] Q,      // output of the encoder Q1_Q0
-    7                                                  output reg valid          // valid flag
-    8                                                );
-    9                                                
-    10              1                         98     always @(posedge clk or posedge rst) begin
-    11                                                 if (rst) begin
-    12              1                          2         Q <= 2'b00;              // Reset output Q
-    13              1                          2         valid <= 1'b0;          // Reset valid flag
-    14                                                 end
-    15                                                 else begin
-    16                                                   casex (D)
-    17                                                     4'b0000: begin
-    18              1                          9             Q <= 2'bxx;          
-    19              1                          9             valid <= 1'b0;
-    20                                                     end
-    21                                                     4'b1xxx: begin
-    22              1                         67             Q <= 2'b11;          
-    23              1                         67             valid <= 1'b1;
-    24                                                     end
-    25                                                     4'b01xx: begin
-    26              1                          9             Q <= 2'b10;          
-    27              1                          9             valid <= 1'b1;
-    28                                                     end
-    29                                                     4'b001x: begin
-    30              1                          8             Q <= 2'b01;          
-    31              1                          8             valid <= 1'b1;
-    32                                                     end
-    33                                                     4'b0001: begin
-    34              1                          3             Q <= 2'b00;          
-    35              1                          3             valid <= 1'b1;
+    2                                                module priority_enc (
+
+    3                                                  input clk,                // the clock signal
+
+    4                                                  input rst,                // active high reset
+
+    5                                                  input [3:0] D,           // input data
+
+    6                                                  output reg [1:0] Q,      // output of the encoder Q1_Q0
+
+    7                                                  output reg valid          // valid flag
+
+    8                                                );
+
+    9                                                
+
+    10              1                         98     always @(posedge clk or posedge rst) begin
+
+    11                                                 if (rst) begin
+
+    12              1                          2         Q <= 2'b00;              // Reset output Q
+
+    13              1                          2         valid <= 1'b0;          // Reset valid flag
+
+    14                                                 end
+
+    15                                                 else begin
+
+    16                                                   casex (D)
+
+    17                                                     4'b0000: begin
+
+    18              1                          9             Q <= 2'bxx;          
+
+    19              1                          9             valid <= 1'b0;
+
+    20                                                     end
+
+    21                                                     4'b1xxx: begin
+
+    22              1                         67             Q <= 2'b11;          
+
+    23              1                         67             valid <= 1'b1;
+
+    24                                                     end
+
+    25                                                     4'b01xx: begin
+
+    26              1                          9             Q <= 2'b10;          
+
+    27              1                          9             valid <= 1'b1;
+
+    28                                                     end
+
+    29                                                     4'b001x: begin
+
+    30              1                          8             Q <= 2'b01;          
+
+    31              1                          8             valid <= 1'b1;
+
+    32                                                     end
+
+    33                                                     4'b0001: begin
+
+    34              1                          3             Q <= 2'b00;          
+
+    35              1                          3             valid <= 1'b1;
+
 
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
