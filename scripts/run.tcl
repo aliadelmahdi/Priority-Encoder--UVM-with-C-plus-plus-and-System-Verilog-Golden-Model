@@ -1,0 +1,37 @@
+# gtkwave waves/waves.vcd
+# vsim -c do "scripts/run.tcl"
+# Compile the C++ DPI-C file (Golden Model) into a shared library
+exec g++ -shared -fPIC -o design/encoder_design/golden_model_c.dll design/encoder_design/golden_model_c.cpp
+vlib work
+vlog +incdir+./interface -f "scripts/list.list" -mfcu +cover -covercells
+# Enable the transcript (even in the compile version of questa sim)
+transcript on
+transcript file scripts/uvm_transcript.log
+# Start Simulation
+vsim -voptargs=+acc -sv_lib design/encoder_design/golden_model_c work.tb_top -cover -classdebug -uvmcontrol=all
+
+log -r /*
+# Add signals to the wave window
+add wave /tb_top/DUT/*
+
+# Code Coverage
+coverage save top.ucdb -onexit -du work.priority_enc
+
+vcd file waves/waves.vcd
+vcd add -r /* 
+run -all
+# Disable the transcript
+transcript off
+vcd flush
+# Exclude Impossible States (Default State) in the Design (Only Included for Safe Design Practices)
+coverage exclude -src design/encoder_design/priority_enc.v -line 38 -code s
+coverage exclude -src design/encoder_design/priority_enc.v -line 39 -code s
+coverage exclude -src design/encoder_design/priority_enc.v -line 37 -code b
+
+# Functional Coverage Report
+coverage report -detail -cvg -directive  \
+    -output "reports/Functional Coverage Report.txt" \
+    /encoder_coverage_pkg/encoder_coverage/*
+quit -sim
+# Save Coverage Report
+vcover report top.ucdb -details -annotate -all -output "reports/Coverage Report - Code, Assertions, and Directives.txt"

@@ -1,0 +1,78 @@
+# interface/
+# │── encoder_defines.svh
+# │── encoder_if.sv
+#
+# design/encoder_design/
+# │── priority_enc.v
+# │── golden_model.sv
+# │── golden_model_c.cpp
+# │── golden_model_c.h
+# │── golden_model_c.dll
+#
+# design/encoder_Assertions/
+# │── encoder_sva.sv
+#
+# objects/
+# │── encoder_config.sv
+# ├── encoder_seq_item.sv
+# ├── encoder_main_sequence.sv
+# ├── encoder_reset_sequence.sv
+#
+# top/test/enviroment/
+# │── encoder_env.sv
+# │── scoreboard/encoder_scoreboard.sv
+# │── coverage_collector/encoder_coverage_collector.sv
+# │
+# ├── agent/
+# │   │── encoder_agent.sv
+# │   │── sequencer/encoder_sequencer.sv
+# │   │── driver/encoder_driver.sv
+# │   │── monitor/encoder_monitor.sv
+# │
+#
+# top/test/
+# │── test.sv
+#
+# top/
+# │── top.sv
+
+# List of files for the encoder testbench
+
+# Interface files
+interface/encoder_defines.svh
+interface/encoder_if.sv
+
+# Design files
+design/encoder_design/priority_enc.v
+design/encoder_design/golden_model.sv
+
+# Assertions
+design/encoder_Assertions/encoder_sva.sv
+
+# Testbench objects
+objects/encoder_config.sv
+objects/encoder_seq_item.sv
+objects/encoder_main_sequence.sv
+objects/encoder_reset_sequence.sv
+
+# Driver file
+top/test/enviroment/agent/driver/encoder_driver.sv
+# Monitor file
+top/test/enviroment/agent/monitor/encoder_monitor.sv
+# Sequencer file
+top/test/enviroment/agent/sequencer/encoder_sequencer.sv
+# Agent
+top/test/enviroment/agent/encoder_agent.sv
+
+# Scoreboard and coverage
+top/test/enviroment/scoreboard/encoder_scoreboard.sv
+top/test/enviroment/coverage_collector/encoder_coverage_collector.sv
+
+# Environment file
+top/test/enviroment/encoder_env.sv
+
+# Test file
+top/test/test.sv
+
+# Top-level file
+top/top.sv
